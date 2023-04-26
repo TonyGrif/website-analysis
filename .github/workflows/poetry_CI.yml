@@ -26,9 +26,8 @@ jobs:
           # Poetry version to use, if version is not provided then latest stable version will be used
           # poetry-version: optional
 
-      - name: Use poetry venv and install dependencies
+      - name: Install dependencies
         run: |
-          poetry shell
           poetry install
           
       - name: Testing with pytest
