@@ -1,0 +1,30 @@
+from datetime import date
+
+class Writer:
+    def __init__(self, od=None, fn=None):
+        self.outputDirectory = od
+        self.fileName = fn
+
+    @property
+    def outputDirectory(self) -> str:
+        return self._outputDirectory
+    
+    @outputDirectory.setter
+    def outputDirectory(self, od) -> None:
+        if od is None:
+            self._outputDirectory = "output"
+        else:
+            self._outputDirectory = od
+
+    @property
+    def fileName(self) -> str:
+        return self._fileName
+    
+    @fileName.setter
+    def fileName(self, fn) -> None:
+        if fn is None:
+            today = date.today()
+            self._fileName = today.strftime("%Y-%m-%d") + "-summary"
+        else:
+            self._fileName = fn
+    
