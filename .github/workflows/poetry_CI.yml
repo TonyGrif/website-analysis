@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Setup Poetry
+        # You may pin to the exact commit or the version.
+        # uses: Gr1N/setup-poetry@15821dc8a61bc630db542ae4baf6a7c19a994844
+        uses: Gr1N/setup-poetry@v8
+        # with:
+          # Poetry version to use, if version is not provided then latest stable version will be used
+          # poetry-version: optional
+
+      - name: Install dependencies
+        run: |
+          poetry install
+          
+      - name: Testing with pytest
+        run: |
+          poetry run pytest
