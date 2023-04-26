@@ -32,4 +32,4 @@ jobs:
           
       - name: Testing with pytest
         run: |
-          pytest
+          poetry run pytest
