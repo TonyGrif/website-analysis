@@ -10,14 +10,17 @@ def writer():
 
 @pytest.fixture()
 def nonDefWriter():
-    writer = Writer("file-output")
+    writer = Writer("build", "file-output")
     yield writer
 
 class TestWriter:
+    def test_outputDirectory(self, writer, nonDefWriter):
+        assert writer.outputDirectory == "output"
+
+        assert nonDefWriter.outputDirectory == "build"
+
     def test_fileName(self, writer, nonDefWriter):
-        # Test default name
         today = date.today()
         assert writer.fileName == today.strftime("%Y-%m-%d") + "-summary"
 
-        # Test non-default name
         assert nonDefWriter.fileName == "file-output"

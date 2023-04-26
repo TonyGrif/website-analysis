@@ -1,8 +1,20 @@
 from datetime import date
 
 class Writer:
-    def __init__(self, fn=None):
+    def __init__(self, od=None, fn=None):
+        self.outputDirectory = od
         self.fileName = fn
+
+    @property
+    def outputDirectory(self) -> str:
+        return self._outputDirectory
+    
+    @outputDirectory.setter
+    def outputDirectory(self, od) -> None:
+        if od is None:
+            self._outputDirectory = "output"
+        else:
+            self._outputDirectory = od
 
     @property
     def fileName(self) -> str:
