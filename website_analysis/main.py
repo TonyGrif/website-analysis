@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import argparse
+from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(
@@ -15,13 +16,24 @@ def main():
     )
 
     args = parser.parse_args()
-    print(args.directory)
+    path = Path(args.directory)
+
+    found = findDirectory(path)
+    if not found:
+        return
     
     return
 
-def findDirectory(arg):
+def findDirectory(arg: Path) -> bool:
+    if not arg.exists():
+        print("Not a valid destination")
+        return False
 
-    return 
+    if not arg.is_dir():
+        print("Please specify a directory, not a file") 
+        return False
+
+    return True
 
 if __name__ == "__main__":
     main()
