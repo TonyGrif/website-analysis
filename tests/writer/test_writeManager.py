@@ -1,16 +1,16 @@
 import pytest
 from datetime import date
 
-from website_analysis.writers.writer import Writer
+from website_analysis.writers.writer import WriteManager
 
 @pytest.fixture()
 def writer():
-    writer = Writer()
+    writer = WriteManager()
     yield writer
 
 @pytest.fixture()
 def nonDefWriter():
-    writer = Writer("build", "file-output")
+    writer = WriteManager("build", "file-output")
     yield writer
 
 class TestWriter:

@@ -3,6 +3,8 @@
 import argparse
 from pathlib import Path
 
+from .writers.writer import WriteManager
+
 def main():
     parser = argparse.ArgumentParser(
         prog="Website Analysis",

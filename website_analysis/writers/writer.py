@@ -1,6 +1,6 @@
 from datetime import date
 
-class Writer:
+class WriteManager:
     def __init__(self, od=None, fn=None):
         self.outputDirectory = od
         self.fileName = fn
