@@ -3,7 +3,7 @@
 import argparse
 from pathlib import Path
 
-from .writers.writer import WriteManager
+from writers.writer import WriteManager
 
 def main():
     parser = argparse.ArgumentParser(
@@ -23,6 +23,9 @@ def main():
     found = findDirectory(path)
     if not found:
         return
+
+    wMan = WriteManager()
+    wMan.write()
     
     return
 
