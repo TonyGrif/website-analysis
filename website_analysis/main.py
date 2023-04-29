@@ -16,21 +16,24 @@ def main():
     )
 
     args = parser.parse_args()
-    path = Path(args.directory)
 
     found = findDirectory(path)
     if not found:
         return
+
+    print(path)
     
     return
 
 def findDirectory(arg: Path) -> bool:
+    arg = arg.resolve()
+    
     if not arg.exists():
-        print("Not a valid destination")
+        print(f"{arg} is not a valid destination")
         return False
 
     if not arg.is_dir():
-        print("Please specify a directory, not a file") 
+        print(f"{arg} is not a directory") 
         return False
 
     return True
