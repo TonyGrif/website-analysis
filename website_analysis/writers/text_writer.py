@@ -5,8 +5,8 @@ class TextWriter:
         self.fullPath = full 
 
     def write(self):
-        pass
-
+        Path.mkdir(self.fullPath.parent, parents=True)
+        Path.touch(self.fullPath)
         
     @property 
     def fullPath(self) -> Path:

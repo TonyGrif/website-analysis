@@ -14,3 +14,19 @@ class TestTextWriter:
 
         tWriter.fullPath = "build/output"
         assert tWriter.fullPath == Path(Path.cwd() / "build/output.txt")
+
+    def test_write(self, tWriter):
+        assert not tWriter.fullPath.exists()
+        tWriter.write()
+        assert tWriter.fullPath.parent.is_dir()
+        assert tWriter.fullPath.is_file()
+        Path.unlink(tWriter.fullPath)
+        Path.rmdir(Path.cwd() / "output/")
+
+        tWriter.fullPath = "build/output"
+        assert not tWriter.fullPath.exists()
+        tWriter.write()
+        assert tWriter.fullPath.parent.is_dir()
+        assert tWriter.fullPath.is_file()
+        Path.unlink(tWriter.fullPath)
+        Path.rmdir(Path.cwd() / "build")
