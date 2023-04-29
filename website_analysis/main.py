@@ -3,6 +3,9 @@
 import argparse
 from pathlib import Path
 
+from utilities import findDirectory
+from writers.writer import WriteManager
+
 def main():
     parser = argparse.ArgumentParser(
         prog="Website Analysis",
@@ -16,27 +19,16 @@ def main():
     )
 
     args = parser.parse_args()
+    path = Path(args.directory)
 
     found = findDirectory(path)
     if not found:
         return
 
-    print(path)
+    wMan = WriteManager()
+    wMan.write()
     
     return
-
-def findDirectory(arg: Path) -> bool:
-    arg = arg.resolve()
-    
-    if not arg.exists():
-        print(f"{arg} is not a valid destination")
-        return False
-
-    if not arg.is_dir():
-        print(f"{arg} is not a directory") 
-        return False
-
-    return True
 
 if __name__ == "__main__":
     main()

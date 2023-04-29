@@ -1,9 +1,15 @@
 from datetime import date
 
-class Writer:
+from .text_writer import TextWriter 
+
+class WriteManager:
     def __init__(self, od=None, fn=None):
         self.outputDirectory = od
         self.fileName = fn
+        self._tWrite = TextWriter(self.outputDirectory + "/" + self.fileName)
+
+    def write(self):
+        self._tWrite.write()
 
     @property
     def outputDirectory(self) -> str:
