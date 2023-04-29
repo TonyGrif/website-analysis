@@ -22,3 +22,9 @@ class TestMain:
 
         found = findDirectory(directory / "cs-landing-page/index.html")
         assert found == False
+
+        found = findDirectory(Path(".."))
+        assert found == True
+
+        found = findDirectory(Path("tests/../tests/writer/.."))
+        assert found == True
