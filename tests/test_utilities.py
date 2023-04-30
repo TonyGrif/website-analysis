@@ -4,27 +4,29 @@ from os import getcwd
 
 from website_analysis.utilities import findDirectory
 
+
 @pytest.fixture
 def directory():
     directory = Path(getcwd() + "/tests/resources/")
     yield directory
 
-class TestMain:
+
+class TestUtilities:
     def test_findDirectory(self, directory):
         found = findDirectory(directory)
-        assert found == True
+        assert found is True
 
         found = findDirectory(directory / "cs417-one-lecture")
-        assert found == True
+        assert found is True
 
         found = findDirectory(directory / "330-landing-page")
-        assert found == False
+        assert found is False
 
         found = findDirectory(directory / "cs-landing-page/index.html")
-        assert found == False
+        assert found is False
 
         found = findDirectory(Path(".."))
-        assert found == True
+        assert found is True
 
         found = findDirectory(Path("tests/../tests/writer/.."))
-        assert found == True
+        assert found is True

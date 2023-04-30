@@ -6,16 +6,15 @@ from pathlib import Path
 from utilities import findDirectory
 from writers.writer import WriteManager
 
+
 def main():
     parser = argparse.ArgumentParser(
         prog="Website Analysis",
-        description="Python script to analyze local copies of websites"
+        description="Python script to analyze local copies of websites",
     )
 
     parser.add_argument(
-        "directory",
-        help="Directory containing the local copy of the website", 
-        type=str
+        "directory", help="Directory containing the local copy of the website", type=str
     )
 
     args = parser.parse_args()
@@ -27,8 +26,9 @@ def main():
 
     wMan = WriteManager()
     wMan.write()
-    
+
     return
+
 
 if __name__ == "__main__":
     main()
