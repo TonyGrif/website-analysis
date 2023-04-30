@@ -4,10 +4,12 @@ from os import getcwd
 
 from website_analysis.utilities import findDirectory
 
+
 @pytest.fixture
 def directory():
     directory = Path(getcwd() + "/tests/resources/")
     yield directory
+
 
 class TestUtilities:
     def test_findDirectory(self, directory):

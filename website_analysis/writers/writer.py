@@ -1,6 +1,7 @@
 from datetime import date
 
-from .text_writer import TextWriter 
+from .text_writer import TextWriter
+
 
 class WriteManager:
     def __init__(self, od=None, fn=None):
@@ -14,7 +15,7 @@ class WriteManager:
     @property
     def outputDirectory(self) -> str:
         return self._outputDirectory
-    
+
     @outputDirectory.setter
     def outputDirectory(self, od) -> None:
         if od is None:
@@ -25,7 +26,7 @@ class WriteManager:
     @property
     def fileName(self) -> str:
         return self._fileName
-    
+
     @fileName.setter
     def fileName(self, fn) -> None:
         if fn is None:
@@ -33,4 +34,3 @@ class WriteManager:
             self._fileName = today.strftime("%Y-%m-%d") + "-summary"
         else:
             self._fileName = fn
-    
