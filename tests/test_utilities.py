@@ -9,7 +9,7 @@ def directory():
     directory = Path(getcwd() + "/tests/resources/")
     yield directory
 
-class TestMain:
+class TestUtilities:
     def test_findDirectory(self, directory):
         found = findDirectory(directory)
         assert found == True
