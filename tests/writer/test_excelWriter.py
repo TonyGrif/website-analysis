@@ -18,4 +18,8 @@ class TestExcelWriter:
         assert writer.fullPath == Path.cwd() / "build/exlFile.xlsx"
 
     def test_write(self, writer):
-        assert False
+        writer.write()
+        assert writer.fullPath.parent.is_dir()
+        assert writer.fullPath.is_file()
+        Path.unlink(writer.fullPath)
+        Path.rmdir(Path.cwd() / "output")
