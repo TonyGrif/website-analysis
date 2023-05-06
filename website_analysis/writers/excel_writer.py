@@ -6,7 +6,7 @@ class ExcelWriter:
         self.fullPath = full
 
     def write(self):
-        Path.mkdir(self.fullPath.parent, parents=True)
+        Path.mkdir(self.fullPath.parent, parents=True, exist_ok=True)
         Path.touch(self.fullPath)
 
     @property 

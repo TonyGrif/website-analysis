@@ -6,13 +6,13 @@ from website_analysis.writers.text_writer import TextWriter
 
 @pytest.fixture
 def tWriter():
-    tWriter = TextWriter("output/test")
+    tWriter = TextWriter("tests/output/test")
     yield tWriter
 
 
 class TestTextWriter:
     def test_file(self, tWriter):
-        assert tWriter.fullPath == Path(Path.cwd() / "output/test.txt")
+        assert tWriter.fullPath == Path(Path.cwd() / "tests/output/test.txt")
 
         tWriter.fullPath = "build/output"
         assert tWriter.fullPath == Path(Path.cwd() / "build/output.txt")
@@ -22,12 +22,10 @@ class TestTextWriter:
         assert tWriter.fullPath.parent.is_dir()
         assert tWriter.fullPath.is_file()
         Path.unlink(tWriter.fullPath)
-        Path.rmdir(Path.cwd() / "output/")
 
-        tWriter.fullPath = "build/output"
-        assert not tWriter.fullPath.exists()
+        tWriter.fullPath = "tests/output/test2"
         tWriter.write()
         assert tWriter.fullPath.parent.is_dir()
         assert tWriter.fullPath.is_file()
         Path.unlink(tWriter.fullPath)
-        Path.rmdir(Path.cwd() / "build")
+        Path.rmdir(Path.cwd() / "tests/output")
