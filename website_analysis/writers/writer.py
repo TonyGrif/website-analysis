@@ -1,16 +1,19 @@
 from datetime import date
 
 from .text_writer import TextWriter
-
+from .json_writer import JsonWriter 
+from html.html import Html
 
 class WriteManager:
     def __init__(self, od=None, fn=None):
         self.outputDirectory = od
         self.fileName = fn
         self._tWrite = TextWriter(self.outputDirectory + "/" + self.fileName)
+        self._jWrite = JsonWriter(self.outputDirectory + "/" + self.fileName)
 
     def write(self):
         self._tWrite.write()
+        self._jWrite.write()
 
     @property
     def outputDirectory(self) -> str:
