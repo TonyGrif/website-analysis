@@ -6,13 +6,13 @@ from website_analysis.writers.json_writer import JsonWriter
 
 @pytest.fixture
 def writer():
-    j = JsonWriter("output/test")
+    j = JsonWriter("tests/output/test")
     yield j
 
 
 class TestJsonWriter:
     def test_fullPath(self, writer):
-        assert writer.fullPath == Path(Path.cwd() / "output/test.json")
+        assert writer.fullPath == Path(Path.cwd() / "tests/output/test.json")
 
         writer.fullPath = "build/file"
         assert writer.fullPath == Path(Path.cwd() / "build/file.json")
@@ -22,4 +22,10 @@ class TestJsonWriter:
         assert writer.fullPath.parent.is_dir()
         assert writer.fullPath.is_file()
         Path.unlink(writer.fullPath)
-        Path.rmdir(Path.cwd() / "output")
+
+        writer.fullPath = "tests/output/test2"
+        writer.write()
+        assert writer.fullPath.parent.is_dir()
+        assert writer.fullPath.is_file()
+        Path.unlink(writer.fullPath)
+        Path.rmdir(Path.cwd() / "tests/output")

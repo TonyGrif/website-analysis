@@ -22,8 +22,17 @@ class TestWriter:
         writer.write()
         assert Path(writer.outputDirectory).is_dir()
         assert Path(writer.outputDirectory + "/" + writer.fileName + ".txt").is_file()
+        assert Path(writer.outputDirectory + "/" + writer.fileName + ".json").is_file()
+        assert Path(writer.outputDirectory + "/" + writer.fileName + ".xlsx").is_file()
+
         Path.unlink(
             Path(writer.outputDirectory + "/" + writer.fileName + ".txt").resolve()
+        )
+        Path.unlink(
+            Path(writer.outputDirectory + "/" + writer.fileName + ".json").resolve()
+        )
+        Path.unlink(
+            Path(writer.outputDirectory + "/" + writer.fileName + ".xlsx").resolve()
         )
         Path.rmdir(Path(writer.outputDirectory).resolve())
 
@@ -32,10 +41,19 @@ class TestWriter:
         assert Path(
             nonDefWriter.outputDirectory + "/" + nonDefWriter.fileName + ".txt"
         ).is_file()
+        assert Path(nonDefWriter.outputDirectory + "/" + nonDefWriter.fileName + ".json").is_file()
+        assert Path(nonDefWriter.outputDirectory + "/" + nonDefWriter.fileName + ".xlsx").is_file()
+
         Path.unlink(
             Path(
                 nonDefWriter.outputDirectory + "/" + nonDefWriter.fileName + ".txt"
             ).resolve()
+        )
+        Path.unlink(
+            Path(nonDefWriter.outputDirectory + "/" + nonDefWriter.fileName + ".json").resolve()
+        )
+        Path.unlink(
+            Path(nonDefWriter.outputDirectory + "/" + nonDefWriter.fileName + ".xlsx").resolve()
         )
         Path.rmdir(Path(nonDefWriter.outputDirectory).resolve())
 
