@@ -1,6 +1,6 @@
 from pathlib import Path
 
-class Html:
+class Website:
     def __init__(self, path):
         self.basePath = path
 
