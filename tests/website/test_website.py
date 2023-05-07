@@ -15,5 +15,8 @@ def cssSite():
 
 class TestWebsite:
     def test_basePath(self, imagesSite, cssSite):
-        assert imagesSite.basePath == Path.cwd() / "tests/resources/cs417-one-lecture"
-        assert cssSite.basePath == Path.cwd() / "tests/resources/cs-landing-page"
+        blank = Website()
+        assert blank.basePath == Path.cwd(), f"Blank Path is {blank.basePath}"
+
+        assert imagesSite.basePath == Path.cwd() / "tests/resources/cs417-one-lecture", f"Image Path is {imagesSite.basePath}"
+        assert cssSite.basePath == Path.cwd() / "tests/resources/cs-landing-page", f"CSS Path is {cssSite.basePath}"

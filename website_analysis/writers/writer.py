@@ -3,6 +3,8 @@ from datetime import date
 from .text_writer import TextWriter
 from .json_writer import JsonWriter
 from .excel_writer import ExcelWriter 
+from ..website.website import Website
+
 
 class WriteManager:
     def __init__(self, od=None, fn=None):
