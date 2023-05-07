@@ -1,7 +1,7 @@
-from pathlib import Path
+from pathlib import Path 
 
 
-class JsonWriter:
+class ExcelWriter:
     def __init__(self, full):
         self.fullPath = full
 
@@ -9,10 +9,10 @@ class JsonWriter:
         Path.mkdir(self.fullPath.parent, parents=True, exist_ok=True)
         Path.touch(self.fullPath)
 
-    @property
+    @property 
     def fullPath(self) -> Path:
         return self._fullPath
 
     @fullPath.setter
     def fullPath(self, value):
-        self._fullPath = Path(value + ".json").resolve()
+        self._fullPath = Path(value + ".xlsx").resolve()
