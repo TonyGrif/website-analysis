@@ -2,6 +2,7 @@ import pytest
 from pathlib import Path
 
 from website_analysis.writers.json_writer import JsonWriter
+from website_analysis.website.site import Website
 
 
 @pytest.fixture

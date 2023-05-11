@@ -3,15 +3,15 @@ from datetime import date
 from .text_writer import TextWriter
 from .json_writer import JsonWriter
 from .excel_writer import ExcelWriter 
-from ..website.website import Website
+from ..website.site import Website
 
 
 class WriteManager:
-    def __init__(self, od=None, fn=None):
+    def __init__(self, site, od=None, fn=None):
         self.outputDirectory = od
         self.fileName = fn
         self._tWrite = TextWriter(self.outputDirectory + "/" + self.fileName)
-        self._jWrite = JsonWriter(self.outputDirectory + "/" + self.fileName)
+        self._jWrite = JsonWriter(site, self.outputDirectory + "/" + self.fileName)
         self._eWrite = ExcelWriter(self.outputDirectory + "/" + self.fileName)
 
     def write(self):

@@ -3,7 +3,6 @@ from datetime import date
 from pathlib import Path
 
 from website_analysis.writers.writer import WriteManager
-from website_analysis.website.website import Website
 
 @pytest.fixture()
 def writer():
