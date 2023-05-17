@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
 
-from website_analysis.website.site import Website
+from website_analysis.src.website.site import Website
 
 @pytest.fixture
 def imagesSite():

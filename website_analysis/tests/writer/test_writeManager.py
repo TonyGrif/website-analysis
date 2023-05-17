@@ -2,7 +2,7 @@ import pytest
 from datetime import date
 from pathlib import Path
 
-from website_analysis.writers.writer import WriteManager
+from website_analysis.src.writers.writer import WriteManager
 
 @pytest.fixture()
 def writer():

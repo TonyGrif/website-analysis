@@ -1,21 +1,22 @@
 import pytest
-from pathlib import Path  
+from pathlib import Path
 
-from website_analysis.writers.excel_writer import ExcelWriter 
+from website_analysis.src.writers.json_writer import JsonWriter
+from website_analysis.src.website.site import Website
 
 
 @pytest.fixture
 def writer():
-    e = ExcelWriter("tests/output/test")
-    yield e 
+    j = JsonWriter("tests/output/test")
+    yield j
 
 
-class TestExcelWriter:
+class TestJsonWriter:
     def test_fullPath(self, writer):
-        assert writer.fullPath == Path.cwd() / "tests/output/test.xlsx"
-        
-        writer.fullPath = "build/exlFile"
-        assert writer.fullPath == Path.cwd() / "build/exlFile.xlsx"
+        assert writer.fullPath == Path(Path.cwd() / "tests/output/test.json")
+
+        writer.fullPath = "build/file"
+        assert writer.fullPath == Path(Path.cwd() / "build/file.json")
 
     def test_write(self, writer):
         writer.write()
