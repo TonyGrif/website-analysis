@@ -4,10 +4,14 @@ from pathlib import Path
 from website_analysis.src.writers.json_writer import JsonWriter
 from website_analysis.src.website.site import Website
 
+@pytest.fixture()
+def site():
+    site = Website(Path.cwd() / "tests/resources/cs417-one-lecture")
+    yield site
 
 @pytest.fixture
-def writer():
-    j = JsonWriter("tests/output/test")
+def writer(site):
+    j = JsonWriter(site, "tests/output/test")
     yield j
 
 

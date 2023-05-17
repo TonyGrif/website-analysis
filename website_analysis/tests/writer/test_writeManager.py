@@ -3,16 +3,22 @@ from datetime import date
 from pathlib import Path
 
 from website_analysis.src.writers.writer import WriteManager
+from website_analysis.src.website.site import Website
 
 @pytest.fixture()
-def writer():
-    writer = WriteManager()
+def site():
+    site = Website(Path.cwd() / "tests/resources/cs417-one-lecture")
+    yield site
+
+@pytest.fixture()
+def writer(site):
+    writer = WriteManager(site)
     yield writer
 
 
 @pytest.fixture()
-def nonDefWriter():
-    writer = WriteManager("build", "file-output")
+def nonDefWriter(site):
+    writer = WriteManager(site, "build", "file-output")
     yield writer
 
 
