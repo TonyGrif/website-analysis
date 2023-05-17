@@ -3,8 +3,9 @@
 import argparse
 from pathlib import Path
 
-from utilities import findDirectory
-from writers.writer import WriteManager
+from src.utilities import findDirectory
+from src.website.site import Website
+from src.writers.writer import WriteManager
 
 
 def main():
@@ -24,7 +25,9 @@ def main():
     if not found:
         return
 
-    wMan = WriteManager()
+    site = Website(path)
+
+    wMan = WriteManager(site)
     wMan.write()
 
     return

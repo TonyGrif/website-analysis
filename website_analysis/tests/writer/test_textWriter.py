@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
 
-from website_analysis.writers.text_writer import TextWriter
+from website_analysis.src.writers.text_writer import TextWriter
 
 
 @pytest.fixture

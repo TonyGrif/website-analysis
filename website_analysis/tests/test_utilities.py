@@ -2,7 +2,7 @@ import pytest
 from pathlib import Path
 from os import getcwd
 
-from website_analysis.utilities import findDirectory
+from website_analysis.src.utilities import findDirectory
 
 
 @pytest.fixture
