@@ -28,7 +28,7 @@ class WriteManager:
         """
         self.outputDirectory = od
         self.fileName = fn
-        self._tWrite = TextWriter(self.outputDirectory + "/" + self.fileName)
+        self._tWrite = TextWriter(site, self.outputDirectory + "/" + self.fileName)
         self._jWrite = JsonWriter(site, self.outputDirectory + "/" + self.fileName)
         self._eWrite = ExcelWriter(self.outputDirectory + "/" + self.fileName)
 
