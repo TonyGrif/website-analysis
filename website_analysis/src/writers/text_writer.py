@@ -1,21 +1,25 @@
 from pathlib import Path
 
+from ..website.site import Website
 
 class TextWriter:
     """
     Responsible for creating and writing information to a text file.
 
     Attributes:
+        website (Website): The website whos data will be written to the text file.
         fullPath (Path): A path for the text file to be writting to.
     """
 
-    def __init__(self, full):
+    def __init__(self, site, full):
         """
         Constructor for the text writer.
 
         Parameters:
+            site (Website): The website whos data will be written to the text file.
             full (str): String representation of the location of the text file.
         """
+        self._website = site
         self.fullPath = full
 
     def write(self):
@@ -26,6 +30,12 @@ class TextWriter:
         """
         Path.mkdir(self.fullPath.parent, parents=True, exist_ok=True)
         Path.touch(self.fullPath)
+
+        with open(self.fullPath, "w") as file:
+            for pages in self._website.htmlFiles:
+                page = Path(pages)
+                page = page.relative_to(self._website.basePath)
+                file.write(str(page))
 
     @property
     def fullPath(self) -> Path:
