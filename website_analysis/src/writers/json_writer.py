@@ -29,7 +29,10 @@ class JsonWriter:
         Path.mkdir(self.fullPath.parent, parents=True, exist_ok=True)
         Path.touch(self.fullPath)
 
-        json_string = {"basePath" : str(self._website.basePath)}
+        json_string = {
+            "basePath" : str(self._website.basePath),
+            "htmlFiles" : self._website.htmlFiles
+        }
 
         with open(self.fullPath, "w") as file:
             json.dump(json_string, file)
