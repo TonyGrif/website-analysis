@@ -3,7 +3,6 @@ from pathlib import Path
 class Website:
     def __init__(self, path=None):
         self.basePath = path
-        self.htmlFiles = self._htmlFileFinder()
 
     @property 
     def basePath(self) ->  Path:
@@ -13,8 +12,10 @@ class Website:
     def basePath(self, path) -> None:
         if path is None:
             self._basePath = Path.cwd()
+            self.htmlFiles = self._htmlFileFinder()
         else:
             self._basePath = (Path.cwd() / path).resolve()
+            self.htmlFiles = self._htmlFileFinder()
 
     def _htmlFileFinder(self) -> list:
         pList = []
