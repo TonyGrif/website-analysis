@@ -7,20 +7,18 @@ from website_analysis.src.website.site import Website
 
 @pytest.fixture()
 def site():
-    site = Website(Path.cwd() / "tests/resources/cs417-one-lecture")
+    site = Website(Path.cwd() / "website_analysis/tests/resources/cs417-one-lecture")
     yield site
 
 @pytest.fixture()
 def writer(site):
-    writer = WriteManager(site)
+    writer = WriteManager(site, "website_analysis/tests/output")
     yield writer
-
 
 @pytest.fixture()
 def nonDefWriter(site):
-    writer = WriteManager(site, "build", "file-output")
+    writer = WriteManager(site, "website_analysis/tests/build", "file-output")
     yield writer
-
 
 class TestWriter:
     def test_write(self, writer, nonDefWriter):
@@ -84,8 +82,11 @@ class TestWriter:
         Path.unlink(Path(pathNoExtension + ".xlsx").resolve())
         Path.rmdir(Path(nonDefWriter.outputDirectory).resolve())
 
-    def test_outputDirectory(self, writer, nonDefWriter):
-        assert writer.outputDirectory == "output", f"Initialization error."
+    def test_outputDirectory(self, site, writer, nonDefWriter):
+        defWrite = WriteManager(site)
+        assert defWrite.outputDirectory == "output", f"Default initialization error"
+
+        assert writer.outputDirectory == "website_analysis/tests/output", f"Initialization error."
 
         writer.outputDirectory = "newDirectory"
         assert writer.outputDirectory == "newDirectory", f"Setter error."
@@ -94,7 +95,7 @@ class TestWriter:
             writer.fileName == today.strftime("%Y-%m-%d") + "-summary"
         ), f"Unexpectedly changing file name"
 
-        assert nonDefWriter.outputDirectory == "build", f"Initialization error."
+        assert nonDefWriter.outputDirectory == "website_analysis/tests/build", f"Initialization error."
 
         nonDefWriter.outputDirectory = "output"
         assert nonDefWriter.outputDirectory == "output", f"Setter error."
@@ -111,7 +112,7 @@ class TestWriter:
         writer.fileName = "landingPage-summary"
         assert writer.fileName == "landingPage-summary", f"Setter error."
         assert (
-            writer.outputDirectory == "output"
+            writer.outputDirectory == "website_analysis/tests/output"
         ), f"Unexpectedly changing output directory."
 
         assert nonDefWriter.fileName == "file-output", f"Initialization error."
@@ -119,5 +120,5 @@ class TestWriter:
         nonDefWriter.fileName = "417-summary"
         assert nonDefWriter.fileName == "417-summary", f"Setter error."
         assert (
-            nonDefWriter.outputDirectory == "build"
+            nonDefWriter.outputDirectory == "website_analysis/tests/build"
         ), f"Unexpectedly changing output directory"
