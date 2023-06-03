@@ -15,14 +15,24 @@ def cssSite():
 
 class TestWebsite:
     def test_basePath(self, imagesSite, cssSite):
+        resourceLoc = "website_analysis/tests/resources"
+
         blank = Website()
         assert blank.basePath == Path.cwd(), f"Blank Path is {blank.basePath}"
 
-        assert imagesSite.basePath == Path.cwd() / "website_analysis/tests/resources/cs417-one-lecture", f"Image Path is {imagesSite.basePath}"
-        assert cssSite.basePath == Path.cwd() / "website_analysis/tests/resources/cs-landing-page", f"CSS Path is {cssSite.basePath}"
+        assert imagesSite.basePath == Path.cwd() / resourceLoc / "cs417-one-lecture", f"Image Path is {imagesSite.basePath}"
+        assert cssSite.basePath == Path.cwd() / resourceLoc / "cs-landing-page", f"CSS Path is {cssSite.basePath}"
+
+        imagesSite.basePath = resourceLoc
+        assert imagesSite.basePath == Path.cwd() / resourceLoc, f"New base path it {imagesSite.basePath}"
 
     def test_htmlFiles(self, imagesSite, cssSite):
-        assert len(imagesSite.htmlFiles) != 0, f"Base Path is {imagesSite.basePath}"
+        resourceLoc = "website_analysis/tests/resources"
+
+        assert len(imagesSite.htmlFiles) == 1, f"Base Path is {imagesSite.basePath}"
 
         for html in imagesSite.htmlFiles:
             assert html.endswith(".html"), f"Non-HTML file included"
+
+        cssSite.basePath = resourceLoc
+        assert len(cssSite.htmlFiles) == 2, f"Counted {len(cssSite.htmlFiles)}"

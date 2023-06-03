@@ -12,20 +12,22 @@ def site():
 
 @pytest.fixture
 def writer(site):
-    j = JsonWriter(site, "website_analysis/tests/output/test")
+    j = JsonWriter(site, "website_analysis/tests/output/JSON")
     yield j
 
 class TestJsonWriter:
     def test_fullPath(self, writer):
-        assert writer.fullPath == Path(Path.cwd() / "website_analysis/tests/output/test.json")
+        assert writer.fullPath == Path(Path.cwd() / "website_analysis/tests/output/JSON.json"), f"Full path is {writer.fullPath}"
 
         writer.fullPath = "build/file"
-        assert writer.fullPath == Path(Path.cwd() / "build/file.json")
+        assert writer.fullPath == Path(Path.cwd() / "build/file.json"), f"Full path is {writer.fullPath}"
 
     def test_write(self, writer):
         writer.write()
-        assert writer.fullPath.parent.is_dir()
-        assert writer.fullPath.is_file()
+        assert writer.fullPath.parent.exists(), f"Directory path not created"
+        assert writer.fullPath.parent.is_dir(), f"Expected directory, found file"
+        assert writer.fullPath.exists(), f"File not created"
+        assert writer.fullPath.is_file(), f"Expected file, found directory"
 
         json_info = json.load(open(writer.fullPath))
         
@@ -34,9 +36,11 @@ class TestJsonWriter:
 
         Path.unlink(writer.fullPath)
 
-        writer.fullPath = "tests/output/test2"
+        writer.fullPath = "website_analysis/tests/output/test2"
         writer.write()
-        assert writer.fullPath.parent.is_dir()
-        assert writer.fullPath.is_file()
+        assert writer.fullPath.parent.exists(), f"Directory path not created"
+        assert writer.fullPath.parent.is_dir(), f"Expected directory, found file"
+        assert writer.fullPath.exists(), f"File not created"
+        assert writer.fullPath.is_file(), f"Expected file, found directory"
         Path.unlink(writer.fullPath)
-        Path.rmdir(Path.cwd() / "tests/output")
+        Path.rmdir(Path.cwd() / "website_analysis/tests/output")
