@@ -1,21 +1,21 @@
 import pytest
 from pathlib import Path
 
-from website_analysis.src.website.site import Website
+from src.website.site import Website
 
 @pytest.fixture
 def imagesSite():
-    w = Website("website_analysis/tests/resources/cs417-one-lecture")
+    w = Website("tests/resources/cs417-one-lecture")
     yield w
 
 @pytest.fixture
 def cssSite():
-    w = Website("website_analysis/tests/resources/cs-landing-page")
+    w = Website("tests/resources/cs-landing-page")
     yield w
 
 class TestWebsite:
     def test_basePath(self, imagesSite, cssSite):
-        resourceLoc = "website_analysis/tests/resources"
+        resourceLoc = "tests/resources"
 
         blank = Website()
         assert blank.basePath == Path.cwd(), f"Blank Path is {blank.basePath}"
@@ -27,7 +27,7 @@ class TestWebsite:
         assert imagesSite.basePath == Path.cwd() / resourceLoc, f"New base path it {imagesSite.basePath}"
 
     def test_htmlFiles(self, imagesSite, cssSite):
-        resourceLoc = "website_analysis/tests/resources"
+        resourceLoc = "tests/resources"
 
         assert len(imagesSite.htmlFiles) == 1, f"Base Path is {imagesSite.basePath}"
 

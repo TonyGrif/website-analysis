@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from ..website.site import Website
+from website.site import Website
 
 class TextWriter:
     """
