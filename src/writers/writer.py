@@ -3,7 +3,7 @@ from datetime import date
 from .text_writer import TextWriter
 from .json_writer import JsonWriter
 from .excel_writer import ExcelWriter 
-from ..website.site import Website
+from website.site import Website
 
 
 class WriteManager:

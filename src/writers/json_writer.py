@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-from ..website.site import Website
+from website.site import Website
 
 class JsonWriter:
     """

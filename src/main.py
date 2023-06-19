@@ -3,9 +3,9 @@
 import argparse
 from pathlib import Path
 
-from src.utilities import findDirectory
-from src.website.site import Website
-from src.writers.writer import WriteManager
+from utilities import findDirectory
+from website.site import Website
+from writers.writer import WriteManager
 
 
 def main():

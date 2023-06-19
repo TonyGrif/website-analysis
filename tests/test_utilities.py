@@ -2,12 +2,12 @@ import pytest
 from pathlib import Path
 from os import getcwd
 
-from website_analysis.src.utilities import findDirectory
+from src.utilities import findDirectory
 
 
 @pytest.fixture
 def directory():
-    directory = Path(getcwd() + "/website_analysis/tests/resources/")
+    directory = Path(getcwd() + "/tests/resources/")
     yield directory
 
 
@@ -28,5 +28,5 @@ class TestUtilities:
         found = findDirectory(Path(".."))
         assert found is True, f"Relative path not being accepted"
 
-        found = findDirectory(Path("website_analysis/tests/../tests/writer/.."))
+        found = findDirectory(Path("tests/../tests/writer/.."))
         assert found is True, f"Relative path navigation not working"
