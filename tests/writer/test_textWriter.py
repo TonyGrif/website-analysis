@@ -6,12 +6,12 @@ from src.website.site import Website
 
 @pytest.fixture 
 def site():
-    site = Website("tests/resources/cs-landing-page")
+    site = Website("tests/resources/")
     yield site
 
 @pytest.fixture
 def tWriter(site):
-    tWriter = TextWriter(site, "tests/output/text")
+    tWriter = TextWriter(site, "tests/output/text/text")
     yield tWriter
 
 
@@ -23,10 +23,14 @@ class TestTextWriter:
         assert tWriter.fullPath.exists(), f"File not created"
         assert tWriter.fullPath.is_file(), f"Expected file, found directory"
 
+        temp = []
+        for path in tWriter._website.htmlFiles:
+            temp.append(path.path)
+
         file = open(tWriter.fullPath, "r")
         for lines in file:
-            temp = '\t'.join(tWriter._website.htmlFiles)
-            assert lines in temp
+            line = lines.strip("\n")
+            assert line in str(temp)
 
         Path.unlink(tWriter.fullPath)
 

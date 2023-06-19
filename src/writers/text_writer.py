@@ -33,9 +33,10 @@ class TextWriter:
 
         with open(self.fullPath, "w") as file:
             for pages in self._website.htmlFiles:
-                page = Path(pages)
+                page = Path(pages.path)
                 page = page.relative_to(self._website.basePath)
                 file.write(str(page))
+                file.write("\n")
 
     @property
     def fullPath(self) -> Path:

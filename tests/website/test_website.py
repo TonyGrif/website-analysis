@@ -32,7 +32,7 @@ class TestWebsite:
         assert len(imagesSite.htmlFiles) == 1, f"Base Path is {imagesSite.basePath}"
 
         for html in imagesSite.htmlFiles:
-            assert html.endswith(".html"), f"Non-HTML file included"
+            assert html.path.endswith(".html"), f"Non-HTML file included"
 
         cssSite.basePath = resourceLoc
         assert len(cssSite.htmlFiles) == 2, f"Counted {len(cssSite.htmlFiles)}"
