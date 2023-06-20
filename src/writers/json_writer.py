@@ -31,7 +31,7 @@ class JsonWriter:
 
         json_string = {
             "basePath" : str(self._website.basePath),
-            "htmlFiles" : self._website.htmlFiles
+            "htmlFiles" : "" #self._website.htmlFiles
         }
 
         with open(self.fullPath, "w") as file:

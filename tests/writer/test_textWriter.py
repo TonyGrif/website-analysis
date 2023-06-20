@@ -11,7 +11,7 @@ def site():
 
 @pytest.fixture
 def tWriter(site):
-    tWriter = TextWriter(site, "tests/output/text/text")
+    tWriter = TextWriter(site, "tests/output/text/text1")
     yield tWriter
 
 
@@ -34,17 +34,17 @@ class TestTextWriter:
 
         Path.unlink(tWriter.fullPath)
 
-        tWriter.fullPath = "tests/output/test2"
+        tWriter.fullPath = "tests/output/text/text2"
         tWriter.write()
         assert tWriter.fullPath.parent.exists(), f"Directory path not created"
         assert tWriter.fullPath.parent.is_dir(), f"Expected directory, found file"
         assert tWriter.fullPath.exists(), f"File not created"
         assert tWriter.fullPath.is_file(), f"Expected file, found directory"
         Path.unlink(tWriter.fullPath)
-        Path.rmdir(Path.cwd() / "tests/output")
+        Path.rmdir(Path.cwd() / "tests/output/text")
 
     def test_file(self, tWriter):
-        assert tWriter.fullPath == Path(Path.cwd() / "tests/output/text.txt"), f"Full path is {tWriter.fullPath}"
+        assert tWriter.fullPath == Path(Path.cwd() / "tests/output/text/text1.txt"), f"Full path is {tWriter.fullPath}"
 
-        tWriter.fullPath = "build/output"
-        assert tWriter.fullPath == Path(Path.cwd() / "build/output.txt"), f"Full path is {tWriter.fullPath}"
+        tWriter.fullPath = "tests/build/output"
+        assert tWriter.fullPath == Path(Path.cwd() / "tests/build/output.txt"), f"Full path is {tWriter.fullPath}"
