@@ -1,3 +1,5 @@
+from pathlib import Path
+
 class Html:
     def __init__(self, p):
         self.path = p
@@ -8,4 +10,7 @@ class Html:
 
     @path.setter
     def path(self, set):
-        self._path = set 
+        if set.endswith(".html"):
+            self._path = Path.cwd() / set 
+        else:
+            return
