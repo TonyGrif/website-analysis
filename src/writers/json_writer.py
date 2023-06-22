@@ -32,9 +32,10 @@ class JsonWriter:
         json_dict = {}
         json_dict['basePath'] = str(self._website.basePath)
         
-        json_dict['htmlFiles'] = []
+        json_dict['pages'] = []
         for pages in self._website.htmlFiles:
-            json_dict['htmlFiles'].append(str(pages.path))
+            json_dict['pages'].append(str(pages.path))
+
 
         with open(self.fullPath, "w") as file:
             json.dump(json_dict, file)

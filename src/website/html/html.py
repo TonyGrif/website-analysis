@@ -12,12 +12,7 @@ class Html:
         with open(self.path) as path:
             soup = BeautifulSoup(path, "html.parser")
 
-        tmp = soup.findAll("img")
-        
-        for img in tmp:
-            self.imageCollection.append(img)
-
-        print(len(self.imageCollection))
+        self.imageCollection = soup.findAll("img")
 
     @property
     def path(self):
