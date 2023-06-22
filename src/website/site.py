@@ -1,14 +1,9 @@
 from pathlib import Path
-from bs4 import BeautifulSoup
-
 
 from .html.html import Html
 
 class Website:
     def __init__(self, path=None):
-        soup = BeautifulSoup(self.path, "html.parser")
-        print("Parsing!")
-        
         self.basePath = path
 
     @property 
