@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from .html.html import Html
+
 class Website:
     def __init__(self, path=None):
         self.basePath = path
@@ -20,6 +22,6 @@ class Website:
     def _htmlFileFinder(self) -> list:
         pList = []
         for path in Path(self.basePath).rglob("*.html"):
-            pList.append(str(path))
+            pList.append(Html(str(path)))
 
         return pList

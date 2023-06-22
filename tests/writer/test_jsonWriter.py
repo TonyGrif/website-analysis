@@ -29,6 +29,7 @@ class TestJsonWriter:
         assert writer.fullPath.exists(), f"File not created"
         assert writer.fullPath.is_file(), f"Expected file, found directory"
 
+        # Testing the contents of file
         json_info = json.load(open(writer.fullPath))
         
         assert json_info['basePath'] == (str(Path.cwd() / "tests/resources/cs417-one-lecture"))
