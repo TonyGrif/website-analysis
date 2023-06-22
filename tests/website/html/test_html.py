@@ -9,6 +9,9 @@ def html():
     yield h
 
 class TestHtml:
+    def test_parse(self, html):
+        assert len(html.imageCollection) == 6
+
     def test_path(self, html):
         # Test initial setter
         assert html.path == Path.cwd() / "tests/resources/cs417-one-lecture/index.html", f"Path is {html.path}"
