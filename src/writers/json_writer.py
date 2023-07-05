@@ -11,7 +11,7 @@ class JsonWriter:
         website (Website): The website whos data will be written to the JSON file.
         fullPath (Path): The full path to the JSON file.
     """
-    def __init__(self, site, full):
+    def __init__(self, site: Website, full: Path):
         """
         Constructor for the JsonWriter class. 
 
@@ -51,7 +51,7 @@ class JsonWriter:
         return self._fullPath
 
     @fullPath.setter
-    def fullPath(self, value):
+    def fullPath(self, value: str):
         """
         Set the full path to this file and handle any redundancy aquired.
 

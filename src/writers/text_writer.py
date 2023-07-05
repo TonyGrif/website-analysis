@@ -50,7 +50,7 @@ class TextWriter:
         return self._fullPath
 
     @fullPath.setter
-    def fullPath(self, full):
+    def fullPath(self, full: str):
         """
         Set the current full path to the text file.
 
