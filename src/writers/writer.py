@@ -2,7 +2,7 @@ from datetime import date
 
 from .text_writer import TextWriter
 from .json_writer import JsonWriter
-from .excel_writer import ExcelWriter 
+from .excel_writer import ExcelWriter
 from website.site import Website
 
 
@@ -18,18 +18,21 @@ class WriteManager:
         eWrite (ExcelWriter): The excel writer.
     """
 
-    def __init__(self, site, od=None, fn=None):
+    def __init__(self, site: Website, od=None, fn=None):
         """
         Constructor for the WriteManager class.
 
         Parameters:
+            site (Website): The website object from which all writers will gather information from.
             od (str): The output directory to write all files to.
             fn (str): The name that all output files will be.
         """
         self.outputDirectory = od
         self.fileName = fn
-        self._tWrite = TextWriter(site, self.outputDirectory + "/" + self.fileName)
-        self._jWrite = JsonWriter(site, self.outputDirectory + "/" + self.fileName)
+        self._tWrite = TextWriter(site,
+                                  self.outputDirectory + "/" + self.fileName)
+        self._jWrite = JsonWriter(site,
+                                  self.outputDirectory + "/" + self.fileName)
         self._eWrite = ExcelWriter(self.outputDirectory + "/" + self.fileName)
 
     def write(self):
@@ -51,7 +54,7 @@ class WriteManager:
         return self._outputDirectory
 
     @outputDirectory.setter
-    def outputDirectory(self, od) -> None:
+    def outputDirectory(self, od: str) -> None:
         """
         Set the output directory.
 
@@ -77,12 +80,13 @@ class WriteManager:
         return self._fileName
 
     @fileName.setter
-    def fileName(self, fn) -> None:
+    def fileName(self, fn: str) -> None:
         """
         Set the standard file name.
 
         Sets the current file name based on the input. If the input is None,
-        sets the file name to today's date in the following format: YEAR-MONTH-DAY-summary.EXTENSION
+        sets the file name to today's date in the following format:
+            YEAR-MONTH-DAY-summary.EXTENSION
 
         Parameters:
             fn (str): Determines the file name.

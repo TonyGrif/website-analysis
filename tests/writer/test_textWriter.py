@@ -30,7 +30,7 @@ class TestTextWriter:
         file = open(tWriter.fullPath, "r")
         for lines in file:
             line = lines.strip("\n")
-            assert line in str(temp)
+            assert line in str(temp), f"Incorrect file added"
 
         Path.unlink(tWriter.fullPath)
 

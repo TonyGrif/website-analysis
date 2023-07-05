@@ -6,5 +6,5 @@ Python program for analyzing a local copy of a website.
 
 ## Running Instructions
 * Start a poetry shell and install the necessary packages
-* Run the main script with `./website_analysis/main.py [path to directory]`
-* Run the test suite wit `pytest`
+* Run the main script with `./src/main.py [path to directory]`
+* Run the test suite with `pytest`
