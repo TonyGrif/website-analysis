@@ -15,7 +15,9 @@ def main():
     )
 
     parser.add_argument(
-        "directory", help="Directory containing the local copy of the website", type=str
+        "directory", 
+        help="Directory containing the local copy of the website", 
+        type=str
     )
 
     args = parser.parse_args()
