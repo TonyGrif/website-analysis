@@ -2,6 +2,7 @@ from pathlib import Path
 
 from website.site import Website
 
+
 class TextWriter:
     """
     Responsible for creating and writing information to a text file.
@@ -11,7 +12,7 @@ class TextWriter:
         fullPath (Path): A path for the text file to be writting to.
     """
 
-    def __init__(self, site, full):
+    def __init__(self, site: Website, full: str):
         """
         Constructor for the text writer.
 
