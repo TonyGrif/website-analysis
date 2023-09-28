@@ -10,9 +10,22 @@ This file can be run as `./main.py`
 """
 
 
+import argparse
+
+
 def main():
     """Run the website-analysis program."""
-    print("Hello World!")
+    parser = argparse.ArgumentParser(
+        prog="Website Analysis",
+        description="Python script to analyze local copies of websites",
+    )
+
+    parser.add_argument(
+        "directory", help="Path to the local copy of the website", type=str
+    )
+
+    args = parser.parse_args()
+    print(args.directory)
 
 
 if __name__ == "__main__":
