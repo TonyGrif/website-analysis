@@ -20,3 +20,5 @@ class TestUtils:
         with pytest.raises(NotADirectoryError) as nde:
             find_directory(directory / "main.py")
             assert type(nde.value.__cause__) is NotADirectoryError
+
+        assert find_directory(directory / "..") is True
