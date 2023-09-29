@@ -16,4 +16,6 @@ def find_directory(arg: Path) -> bool:
     """
     if not arg.exists():
         raise FileNotFoundError 
+    if not arg.is_dir():
+        raise NotADirectoryError
     return True    
