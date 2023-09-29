@@ -1,3 +1,7 @@
+"""This module contains utility functions designed
+for use in the 'website-analysis' program
+"""
+
 from pathlib import Path
 
 
@@ -15,7 +19,7 @@ def find_directory(arg: Path) -> bool:
         NotADirectoryError: If the path given is a file, not a directory.
     """
     if not arg.exists():
-        raise FileNotFoundError 
+        raise FileNotFoundError
     if not arg.is_dir():
         raise NotADirectoryError
-    return True    
+    return True

@@ -4,9 +4,11 @@ from os import getcwd
 
 from utils import find_directory
 
+
 @pytest.fixture
 def directory():
     yield Path(getcwd())
+
 
 class TestUtils:
     def test_find_directory(self, directory):
