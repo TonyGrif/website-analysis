@@ -29,7 +29,14 @@ def main():
     )
 
     args = parser.parse_args()
-    print(args.directory)
+    try:
+        find_directory(args.directory)
+    except FileNotFoundError:
+        print("Directory not found")
+        return
+    except NotADirectoryError:
+        print("Directory not provided")
+        return
 
 
 if __name__ == "__main__":
