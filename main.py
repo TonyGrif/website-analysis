@@ -11,6 +11,10 @@ This file can be run as `./main.py`
 
 
 import argparse
+from pathlib import Path
+
+
+from src.utils import find_directory
 
 
 def main():
@@ -21,7 +25,7 @@ def main():
     )
 
     parser.add_argument(
-        "directory", help="Path to the local copy of the website", type=str
+        "directory", help="Path to the local copy of the website", type=Path
     )
 
     args = parser.parse_args()
