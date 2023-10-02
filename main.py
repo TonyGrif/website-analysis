@@ -10,9 +10,33 @@ This file can be run as `./main.py`
 """
 
 
+import argparse
+from pathlib import Path
+
+
+from src.utils import find_directory
+
+
 def main():
     """Run the website-analysis program."""
-    print("Hello World!")
+    parser = argparse.ArgumentParser(
+        prog="Website Analysis",
+        description="Python script to analyze local copies of websites",
+    )
+
+    parser.add_argument(
+        "directory", help="Path to the local copy of the website", type=Path
+    )
+
+    args = parser.parse_args()
+    try:
+        find_directory(args.directory)
+    except FileNotFoundError:
+        print("Directory not found")
+        return
+    except NotADirectoryError:
+        print("Directory not provided")
+        return
 
 
 if __name__ == "__main__":
