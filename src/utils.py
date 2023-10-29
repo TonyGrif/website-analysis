@@ -23,3 +23,11 @@ def find_directory(arg: Path) -> bool:
     if not arg.is_dir():
         raise NotADirectoryError
     return True
+
+def create_report_directory(directory: Path):
+    """Create the reports directory and any parent directories needed.
+
+    Parameters:
+        directory (Path): The directory path to create.
+    """
+    pass

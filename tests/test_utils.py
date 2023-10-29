@@ -24,3 +24,6 @@ class TestUtils:
             assert type(nde.value.__cause__) is NotADirectoryError
 
         assert find_directory(directory / "..") is True
+
+    def test_create_report_directory(self, directory):
+        pass
