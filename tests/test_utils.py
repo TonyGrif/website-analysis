@@ -2,7 +2,7 @@ import pytest
 from pathlib import Path
 from os import getcwd
 
-from utils import find_directory
+from utils import *
 
 
 @pytest.fixture
@@ -24,3 +24,24 @@ class TestUtils:
             assert type(nde.value.__cause__) is NotADirectoryError
 
         assert find_directory(directory / "..") is True
+
+    def test_create_report_directory(self, directory):
+        if not Path(Path.cwd() / "reports").exists():
+            create_report_directory()
+            assert Path(directory / "reports").exists()
+
+            Path.rmdir(Path.cwd() / "reports")
+
+        create_report_directory(directory / "tests/reports")
+        assert Path(directory / "tests/reports").exists()
+
+        create_report_directory(directory / "tests/reports")
+        assert Path(directory / "tests/reports").exists()
+
+        Path.rmdir(directory / "tests/reports")
+
+        create_report_directory(directory / "tests/parent/report")
+        assert Path(directory / "tests/parent/report").exists()
+
+        Path.rmdir(directory / "tests/parent/report")
+        Path.rmdir(directory / "tests/parent/")
