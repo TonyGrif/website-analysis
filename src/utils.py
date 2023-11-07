@@ -31,4 +31,4 @@ def create_report_directory(directory: str or Path = "reports/") -> None:
     Parameters:
         directory (Path): The directory path to create.
     """
-    Path.mkdir(directory, parents=True, exist_ok=True)
+    Path.mkdir(Path.cwd() / directory, parents=True, exist_ok=True)
