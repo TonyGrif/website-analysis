@@ -2,7 +2,7 @@ import pytest
 from pathlib import Path
 from os import getcwd
 
-from utils import find_directory
+from utils import *
 
 
 @pytest.fixture
@@ -26,4 +26,18 @@ class TestUtils:
         assert find_directory(directory / "..") is True
 
     def test_create_report_directory(self, directory):
-        pass
+        if not Path(Path.cwd() / "reports").exists():
+            create_report_directory()
+            assert Path(directory / "reports").exists()
+
+            Path.rmdir(Path.cwd() / "reports")
+
+        create_report_directory(directory / "tests/reports")
+        assert Path(directory / "tests/reports").exists()
+
+        Path.rmdir(directory / "tests/reports")
+
+        create_report_directory(directory / "tests/non-exists/parent/report")
+        assert Path(directory / "tests/non-exists/parent/report").exists()
+
+        Path.rmdir(directory / "tests/non-exists/parent/report")
