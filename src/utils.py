@@ -24,6 +24,7 @@ def find_directory(arg: Path) -> bool:
         raise NotADirectoryError
     return True
 
+
 def create_report_directory(directory: str or Path = "reports/") -> None:
     """Create the reports directory and any parent directories needed.
 
