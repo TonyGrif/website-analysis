@@ -35,6 +35,9 @@ class TestUtils:
         create_report_directory(directory / "tests/reports")
         assert Path(directory / "tests/reports").exists()
 
+        create_report_directory(directory / "tests/reports")
+        assert Path(directory / "tests/reports").exists()
+
         Path.rmdir(directory / "tests/reports")
 
         create_report_directory(directory / "tests/non-exists/parent/report")
